@@ -8901,6 +8901,11 @@ void eval_fmt_source_name_line(char *buf, size_t bufsize)
 /// ":checkhealth [plugins]"
 void ex_checkhealth(exarg_T *eap)
 {
+  if (cmdmod.cmod_split){
+    if (win_split(0,cmdmod.cmod_split)== FAIL){
+      return;
+    }
+  }
   Error err = ERROR_INIT;
   MAXSIZE_TEMP_ARRAY(args, 1);
   ADD_C(args, CSTR_AS_OBJ(eap->arg));
